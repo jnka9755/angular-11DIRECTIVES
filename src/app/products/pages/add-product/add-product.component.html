@@ -1,0 +1,44 @@
+<h1 class="mt-5">Agregar producto</h1>
+<hr>
+
+<form [formGroup]="productForm">
+
+    <div>{{ message }}</div>
+
+    <div class="row g-3 align-items-center mb-3">
+        <div class="col-auto">
+            <label class="col-form-label">Nombre: </label>
+        </div>
+        <div class="col-auto">
+            <input class="form-control" formControlName="name">
+        </div>
+
+        <div class="col-auto">
+            <span error-msg [message]="message" [color]="color"
+                [valid]="!validateField('name')"></span>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            <button class="btn btn-primary float-end" (click)="changeMessage()"> Guardar</button>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary float-end" (click)="changeColor()"> Cambiar color</button>
+        </div>
+    </div>
+</form>
+
+<h5 class="mt-5"> Formulario </h5>
+
+<pre> Value: {{ productForm.value | json }}</pre>
+<pre> Valid: {{ productForm.valid }}</pre>
+
+<div class="row mt-5" 
+    *customIf="productForm.valid">
+        <div class="col">
+            <div class="alert alert-primary">
+                Todo Ok!
+            </div>
+        </div>
+</div>
